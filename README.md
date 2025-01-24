@@ -3,7 +3,7 @@
 A clean, modern portfolio website showcasing my skills, experience, and projects.
 
 ## 🌐 Live Demo
-[View Live Site](https://artiwari10.github.io/portfolio/)
+[View Live Site](https://artiwari10.github.io/Portfolio/)
 
 ## ✨ Features
 - Responsive design that works on all devices
