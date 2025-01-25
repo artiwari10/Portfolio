@@ -2,9 +2,23 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        const navHeight = document.querySelector('.navbar').offsetHeight;
+        
+        if (targetElement) {
+            const targetPosition = targetElement.offsetTop - navHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            if (nav.classList.contains('nav-active')) {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+            }
+        }
     });
 });
 
@@ -117,19 +131,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Scroll Progress Bar
-const scrollProgress = document.createElement('div');
-scrollProgress.className = 'scroll-progress';
-document.body.appendChild(scrollProgress);
-
+// Enhanced scroll progress bar
+const scrollProgress = document.querySelector('.scroll-progress');
 window.addEventListener('scroll', () => {
     const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = (window.scrollY / windowHeight) * 100;
-    scrollProgress.style.transform = `scaleX(${scrolled / 100})`;
+    
+    // Add easing to the progress bar
+    requestAnimationFrame(() => {
+        scrollProgress.style.transform = `scaleX(${scrolled / 100})`;
+        scrollProgress.style.transition = 'transform 0.2s ease-out';
+    });
 });
 
-// Section Visibility Animation
-const sections = document.querySelectorAll('section');
+// Modified section visibility animation
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px'
@@ -143,6 +158,25 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-sections.forEach(section => {
+// Simplified section observation
+document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '1'; // Ensure sections are visible by default
     observer.observe(section);
 });
+
+// Add smooth scroll restoration
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Prevent scroll jank
+let isScrolling;
+window.addEventListener('scroll', () => {
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+        window.scrollTo({
+            top: window.scrollY,
+            behavior: 'smooth'
+        });
+    }, 66);
+}, false);

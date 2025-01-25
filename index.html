@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Anmol Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -11,6 +12,7 @@
     
     <!-- Basic favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico">
+
     
     <!-- For modern browsers -->
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/web_ico.ico">
@@ -26,17 +28,18 @@
     <meta name="theme-color" content="#4A90E2">
 </head>
 <body>
+    <div class="scroll-progress"></div>
     <nav class="navbar">
         <div class="logo">ART's Portfolio</div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#profiles">Profiles</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#achievements" class="nav-link">Achievements</a></li>
+            <li><a href="#profiles" class="nav-link">Profiles</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <div class="burger">
+        <div class="burger" aria-label="menu">
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
@@ -65,7 +68,7 @@
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>I'm Anmol Ratan Tiwari, a 2024 BTech graduate from College of Engineering Roorkee with honors in Information Technology. Skilled in Java. Solved over 700 DSA question of various platforms like Leetcode, Codechef, HackerRank, etc.</p>
+                <p>I'm Anmol Ratan Tiwari, a 2024 BTech graduate from College of Engineering Roorkee with honors in Information Technology. Skilled in Java. Solved over 700 DSA questions on various platforms like LeetCode, CodeChef, HackerRank, etc.</p>
                 
                 <div class="journey">
                     <h3>My Journey</h3>
@@ -88,7 +91,7 @@
                                 <div class="year">Second Year</div>
                                 <div class="achievement">
                                     <i class="fas fa-award"></i>
-                                    <p>Secured an internship at CodeChef as an Educator, taught over 300 students in live batche and resolved more than 100 doubts</p>
+                                    <p>Secured an internship at CodeChef as an Educator, taught over 300 students in live batches and resolved more than 100 doubts</p>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +258,7 @@
         <div class="activity-card">
             <div class="activity-content">
                 <div class="activity-image">
-                    <img src="./assets/images/java_workshop.jpeg" alt="Java Workshop">
+                    <img src="./assets/Images/java_workshop.jpeg" alt="Java Workshop" loading="lazy">
                 </div>
                 <div class="activity-details">
                     <h3>30-Hour Java Workshop</h3>

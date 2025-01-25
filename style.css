@@ -55,7 +55,7 @@ body {
 .nav-links a {
     text-decoration: none;
     color: #333;
-    transition: color 0.3s;
+    transition: color 0.3s ease, transform 0.3s ease;
     position: relative;
     padding: 0.5rem 0;
     font-size: 0.9rem;
@@ -1257,18 +1257,23 @@ footer {
     transform-origin: left;
     transform: scaleX(0);
     z-index: 1001;
+    transition: transform 0.2s ease;
 }
 
 /* Cool Section Transitions */
 section {
-    opacity: 0;
+    opacity: 1; /* Make sections visible by default */
     transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: transform 0.6s ease-out;
 }
 
 section.visible {
-    opacity: 1;
     transform: translateY(0);
+}
+
+/* Remove any opacity: 0 from children elements */
+section * {
+    opacity: 1 !important;
 }
 
 /* Enhanced Section Titles */
@@ -1564,24 +1569,31 @@ section.visible {
 
 .activity-content {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }
 
 .activity-image {
-    flex: 0 0 400px;
-    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .activity-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    height: 300px; /* Fixed height for consistency */
+    object-fit: cover; /* This will make the image cover the area without stretching */
+    filter: grayscale(100%); /* Make image black and white by default */
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .activity-image:hover img {
-    transform: scale(1.05);
+    filter: grayscale(0%); /* Remove grayscale on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 .activity-details {
@@ -1656,4 +1668,231 @@ section.visible {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* Add these responsive rules */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profiles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .hero-content {
+        padding: 20px;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .experience-card {
+        margin: 10px;
+    }
+}
+
+/* Add better image handling */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Improve touch targets for mobile */
+button, 
+.nav-link,
+.project-link,
+.profile-link,
+.contact-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px;
+}
+
+/* Add smooth scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px; /* Accounts for fixed navbar */
+}
+
+/* Improved responsive design */
+@media screen and (max-width: 1024px) {
+    .section-title {
+        font-size: 2rem;
+        margin: 2rem 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .typing-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Existing mobile styles */
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .typing-text {
+        font-size: 1rem;
+    }
+
+    .milestone {
+        margin: 1rem 0;
+    }
+
+    .journey-path::before {
+        left: 15px;
+    }
+
+    .milestone-content {
+        margin-left: 35px;
+    }
+
+    .achievement-card {
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    .activity-content {
+        flex-direction: column;
+    }
+
+    .activity-image {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .activity-details {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .social-links a {
+        margin: 0 0.5rem;
+    }
+
+    .resume-btn {
+        padding: 0.5rem 1rem;
+    }
+
+    .skill {
+        margin: 0.25rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .project-card {
+        padding: 1rem;
+    }
+
+    .tech-stack span {
+        margin: 0.25rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .contact-btn {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Improved accessibility and interactivity */
+.nav-link:hover,
+.project-link:hover,
+.profile-link:hover,
+.contact-btn:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+/* Better image handling */
+.activity-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Smooth transitions */
+.project-card,
+.achievement-card,
+.profile-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover,
+.achievement-card:hover,
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Better spacing for mobile */
+section {
+    padding: 3rem 1rem;
+}
+
+@media screen and (max-width: 480px) {
+    section {
+        padding: 2rem 0.5rem;
+    }
+}
+
+/* Improved form responsiveness */
+.contact-container {
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
