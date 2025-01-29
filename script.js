@@ -21,7 +21,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
+function scrollProjects(direction) {
+    const container = document.querySelector('.project-container');
+    const scrollAmount = 320; // card width + gap
+    container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
 // Mobile navigation toggle
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');

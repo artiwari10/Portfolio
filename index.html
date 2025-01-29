@@ -185,29 +185,77 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <section id="projects" class="project-section">
         <h2 class="section-title">Projects</h2>
-        
+        <div class="scroll-indicator scroll-left" onclick="scrollProjects(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="project-container">
             <div class="project-card">
-                <h3>Signature</h3>
-                <p class="project-description">Live Signature Web Application for creating, editing, and saving digital signatures in real time.</p>
-                <div class="project-highlights">
-                    <p>✨ Responsive canvas with customizable options</p>
-                    <p>🎨 Stroke width and color customization</p>
+                <div class="project-content">
+                    <h3>Signature</h3>
+                    <p>A web application that allows users to create digital signatures using a canvas interface. 
+                       Features include drawing, downloading signatures, and clearing the canvas.</p>
+                    <div class="tech-stack">
+                        <span class="tech">HTML</span>
+                        <span class="tech">CSS</span>
+                        <span class="tech">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/artiwari10/Signature" target="_blank" class="btn">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://artiwari10.github.io/Signature/" target="_blank" class="btn btn-live">
+                            <i class="fas fa-external-link-alt"></i> Live
+                        </a>
+                    </div>
                 </div>
-                <div class="tech-stack">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-                <a href="https://github.com/artiwari10/Signature" class="project-link" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                
-                <a href="https://artiwari10.github.io/Signature/" class="project-link" target="_blank">
-                    <i class="fab fa-github"></i> Live 
-                </a>
             </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Java Blog</h3>
+                    <p>A dynamic blog platform built with HTML, CSS, and JavaScript. Features responsive design, 
+                       interactive user interface, and smooth animations.</p>
+                    <div class="tech-stack">
+                        <span class="tech">HTML</span>
+                        <span class="tech">CSS</span>
+                        <span class="tech">JavaScript</span>
+<!--  <span class="tech">Count API</span>-->                       
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/artiwari10/javablogs" target="_blank" class="btn">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://artiwari10.github.io/javablogs/" target="_blank" class="btn btn-live">
+                            <i class="fas fa-external-link-alt"></i> Live
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Portfolio Website</h3>
+                    <p>A modern and responsive portfolio website showcasing my skills and projects. 
+                       Built with clean and efficient code.</p>
+                    <div class="tech-stack">
+                        <span class="tech">HTML</span>
+                        <span class="tech">CSS</span>
+                        <span class="tech">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/artiwari10/Portfolio?tab=readme-ov-file" target="_blank" class="btn">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://artiwari10.github.io/Portfolio/" target="_blank" class="btn btn-live">
+                            <i class="fas fa-external-link-alt"></i> Live
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator scroll-right" onclick="scrollProjects(1)">
+            <i class="fas fa-chevron-right"></i>
         </div>
     </section>
 
