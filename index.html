@@ -39,6 +39,10 @@
             <li><a href="#projects" class="nav-link">Projects</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
+        <div class="visitor-counter">
+            <i class="fas fa-eye"></i>
+            <span id="visits">0</span>&nbsp;Visitors
+        </div>
         <div class="burger" aria-label="menu">
             <div class="line1"></div>
             <div class="line2"></div>
@@ -51,7 +55,8 @@
         <div class="hero-content">
             <h1>Hi, I'm <span class="highlight">Anmol Ratan Tiwari</span></h1>
             <p class="typing-text">I'm a Software Developer</p>
-           
+            
+            
             <div class="social-links">
                 <a href="https://github.com/artiwari10"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/artiwari10/"><i class="fab fa-linkedin"></i></a>
@@ -335,5 +340,29 @@
     <footer>
         <p>&copy; 2025 Anmol Ratan Tiwari. All rights reserved.</p>
     </footer>
+
+    <!-- Add visitor counter script -->
+    <script>
+        // Initialize the counter if it doesn't exist
+        fetch('https://api.countapi.xyz/create?namespace=artiwari10.portfolio&key=visits&value=0')
+            .then(() => {
+                // Get the counter value
+                fetch('https://api.countapi.xyz/get/artiwari10.portfolio/visits')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('visits').textContent = data.value.toLocaleString();
+                    })
+                    .catch(() => {
+                        document.getElementById('visits').textContent = '...';
+                    });
+            });
+
+        // Increment the counter
+        fetch('https://api.countapi.xyz/hit/artiwari10.portfolio/visits')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visits').textContent = data.value.toLocaleString();
+            });
+    </script>
 </body>
 </html>

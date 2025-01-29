@@ -10,7 +10,88 @@ body {
     line-height: 1.6;
     scroll-behavior: smooth;
 }
+.visitor-counter {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    gap: 5px;
+}
 
+.visitor-counter i {
+    color: #4A90E2;
+}
+
+@media screen and (max-width: 1024px) {
+    .visitor-counter {
+        font-size: 0.8rem;
+        margin-right: 15px;
+    }
+}
+
+/* For mobile landscape */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .nav-links {
+        position: absolute;
+        right: 0;
+        height: 92vh;
+        top: 8vh;
+        background-color: var(--primary-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        z-index: 1;
+    }
+
+    /* Make sure navbar stays visible */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--primary-color);
+        position: fixed;
+        width: 100%;
+        z-index: 2;  /* Higher z-index to stay above nav-links */
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav-active {
+        transform: translateX(0%);
+    }
+}
+
+/* For mobile portrait */
+@media screen and (max-width: 480px) {
+    .visitor-counter {
+        position: absolute;
+        top: 15px;
+        right: 50px;
+        font-size: 0.7rem;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .visitor-counter {
+        display: none;
+    }
+}
 /* Enhanced Base Styles */
 :root {
     --primary-color: #4a90e2;
