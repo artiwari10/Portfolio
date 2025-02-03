@@ -197,40 +197,48 @@ function scrollCertificates(direction) {
     });
 }
 
-// Visitor Counter with localStorage backup
+// Visitor Counter
 function updateVisitorCount() {
-    const NAMESPACE = 'artiwari10-portfolio-github';  // unique to your GitHub hosted portfolio
-    const KEY = 'portfolio-visits-2024';              // unique key with year
-    const LOCAL_STORAGE_KEY = 'visitorCount';
-
-    // First try to get the count from localStorage
-    let count = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY)) || 0;
+    // Get the current date
+    const today = new Date().toISOString().split('T')[0];
+    const storageKey = 'lastVisitDate';
+    const countKey = 'visitorCount';
     
-    // Update display with current count
-    document.getElementById('visits').textContent = count.toLocaleString();
-    document.getElementById('footer-visits').textContent = count.toLocaleString();
-
-    // Then try to update from the API
-    fetch(`https://api.countapi.xyz/create/${NAMESPACE}/${KEY}?enable_reset=0`)
-        .then(() => fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`))
-        .then(response => response.json())
-        .then(data => {
-            if (data.value) {
-                count = data.value;
-                localStorage.setItem(LOCAL_STORAGE_KEY, count);
-                document.getElementById('visits').textContent = count.toLocaleString();
-                document.getElementById('footer-visits').textContent = count.toLocaleString();
-            }
-        })
-        .catch(error => {
-            console.error('Error updating visitor count:', error);
-            // If API fails, increment local count
-            count++;
-            localStorage.setItem(LOCAL_STORAGE_KEY, count);
-            document.getElementById('visits').textContent = count.toLocaleString();
-            document.getElementById('footer-visits').textContent = count.toLocaleString();
-        });
+    // Check if this is a new visit
+    const lastVisit = localStorage.getItem(storageKey);
+    const currentCount = parseInt(localStorage.getItem(countKey)) || 0;
+    
+    if (lastVisit !== today) {
+        // New day, new visit
+        const newCount = currentCount + 1;
+        localStorage.setItem(countKey, newCount);
+        localStorage.setItem(storageKey, today);
+        
+        // Update display
+        updateCountDisplay(newCount);
+        
+        // Send to server (if you want to track globally)
+        fetch('https://api.countapi.xyz/hit/artiwari10-portfolio/visits')
+            .catch(error => console.error('Error updating global count:', error));
+    } else {
+        // Same day, just display current count
+        updateCountDisplay(currentCount);
+    }
 }
 
-// Call when page loads
+function updateCountDisplay(count) {
+    // Format number with commas
+    const formattedCount = new Intl.NumberFormat().format(count);
+    
+    // Update both navbar and footer counters
+    const counters = ['visits', 'footer-visits'];
+    counters.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = formattedCount;
+        }
+    });
+}
+
+// Initialize counter when page loads
 document.addEventListener('DOMContentLoaded', updateVisitorCount);
