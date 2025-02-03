@@ -187,3 +187,50 @@ window.addEventListener('scroll', () => {
         });
     }, 66);
 }, false);
+
+function scrollCertificates(direction) {
+    const container = document.querySelector('.certificates-container');
+    const scrollAmount = container.offsetWidth * 0.8;
+    container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
+
+// Visitor Counter with localStorage backup
+function updateVisitorCount() {
+    const NAMESPACE = 'artiwari10-portfolio-github';  // unique to your GitHub hosted portfolio
+    const KEY = 'portfolio-visits-2024';              // unique key with year
+    const LOCAL_STORAGE_KEY = 'visitorCount';
+
+    // First try to get the count from localStorage
+    let count = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY)) || 0;
+    
+    // Update display with current count
+    document.getElementById('visits').textContent = count.toLocaleString();
+    document.getElementById('footer-visits').textContent = count.toLocaleString();
+
+    // Then try to update from the API
+    fetch(`https://api.countapi.xyz/create/${NAMESPACE}/${KEY}?enable_reset=0`)
+        .then(() => fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`))
+        .then(response => response.json())
+        .then(data => {
+            if (data.value) {
+                count = data.value;
+                localStorage.setItem(LOCAL_STORAGE_KEY, count);
+                document.getElementById('visits').textContent = count.toLocaleString();
+                document.getElementById('footer-visits').textContent = count.toLocaleString();
+            }
+        })
+        .catch(error => {
+            console.error('Error updating visitor count:', error);
+            // If API fails, increment local count
+            count++;
+            localStorage.setItem(LOCAL_STORAGE_KEY, count);
+            document.getElementById('visits').textContent = count.toLocaleString();
+            document.getElementById('footer-visits').textContent = count.toLocaleString();
+        });
+}
+
+// Call when page loads
+document.addEventListener('DOMContentLoaded', updateVisitorCount);
