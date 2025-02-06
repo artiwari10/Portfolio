@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Anmol Ratan Tiwari Portfolio",
     "short_name": "ART Portfolio",
@@ -16,4 +17,24 @@
     "theme_color": "#4A90E2",
     "background_color": "#ffffff",
     "display": "standalone"
+=======
+{
+    "name": "Anmol Ratan Tiwari Portfolio",
+    "short_name": "ART Portfolio",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#4A90E2",
+    "background_color": "#ffffff",
+    "display": "standalone"
+>>>>>>> d10f9d7 (Updated Certificates)
 } 
