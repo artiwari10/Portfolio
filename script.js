@@ -465,6 +465,14 @@ function updateVisitorCount() {
         
         // Send to server (if you want to track globally)
         fetch('https://api.countapi.xyz/hit/artiwari10-portfolio/visits')
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.value) {
+                    // Update local storage with server count
+                    localStorage.setItem(countKey, data.value);
+                    updateCountDisplay(data.value);
+                }
+            })
             .catch(error => console.error('Error updating global count:', error));
     } else {
         // Same day, just display current count
@@ -484,6 +492,7 @@ function updateCountDisplay(count) {
             element.textContent = formattedCount;
         }
     });
+}
 }
 
 // Initialize counter when page loads
